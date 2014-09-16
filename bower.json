@@ -1,0 +1,36 @@
+{
+  "name": "Kai Gittens",
+  "version": "1.0.0",
+  "homepage": "https://github.com/kaidez/mitchum-demo-code",
+  "authors": [
+    "kaidez <kai.gittens@gmail.com>"
+  ],
+  "description": "Preliminary test code for mitchum.com",
+  "main": "index.html",
+  "keywords": [
+    "html",
+    "css",
+    "javascript",
+    "haml",
+    "gulp",
+    "less"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "scrollNav": "~2.2.0",
+    "bootstrap": "~3.2.0",
+    "masonry": "~3.1.5",
+    "gulp": "~3.8.8",
+    "jquery": "1.11.1"
+  },
+  "resolutions": {
+    "jquery": ">= 1.9.0"
+  }
+}
