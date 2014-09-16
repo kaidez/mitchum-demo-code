@@ -1,0 +1,30 @@
+{
+  "name": "mitchum-demo-code",
+  "version": "1.0.0",
+  "description": "Preliminary test code for mitchum.com",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaidez/mitchum-demo-code.git"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "javascript",
+    "gulp",
+    "less",
+    "haml"
+  ],
+  "author": "kaidez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kaidez/mitchum-demo-code/issues"
+  },
+  "homepage": "https://github.com/kaidez/mitchum-demo-code",
+  "devDependencies": {
+    "gulp": "^3.8.8"
+  }
+}
