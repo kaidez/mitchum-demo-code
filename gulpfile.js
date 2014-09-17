@@ -5,7 +5,7 @@ var watch = require('gulp-watch');
 // Shell out Haml build command
 gulp.task('haml', shell.task(
   'haml index.haml build/index.html'
-))
+));
 
 //watch
 gulp.task('watch', function() {
