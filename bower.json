@@ -28,7 +28,8 @@
     "bootstrap": "~3.2.0",
     "masonry": "~3.1.5",
     "gulp": "~3.8.8",
-    "jquery": "1.11.1"
+    "jquery": "1.11.1",
+    "normalize-less": "*"
   },
   "resolutions": {
     "jquery": ">= 1.9.0"
