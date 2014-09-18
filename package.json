@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/kaidez/mitchum-demo-code",
   "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-wiredep": "^1.9.0",
     "gulp": "^3.8.8",
     "gulp-grunt": "^0.5.2",
     "gulp-shell": "^0.2.9",
