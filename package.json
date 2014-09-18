@@ -26,6 +26,7 @@
   "homepage": "https://github.com/kaidez/mitchum-demo-code",
   "devDependencies": {
     "gulp": "^3.8.8",
+    "gulp-grunt": "^0.5.2",
     "gulp-shell": "^0.2.9",
     "gulp-watch": "^1.0.5"
   }
