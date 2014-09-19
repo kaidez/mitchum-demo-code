@@ -8,7 +8,8 @@ module.exports = function(grunt) {
       // don't send messages to saying that Bower components aren't
       // configured...ignore them instead
       options:{
-        ignore: ['less','gulp','normalize-less']
+        ignore: ['less','gulp','normalize-less', 'jquery'],
+        runBower: false
       },
       css_build: {
         // copy over cs files
@@ -32,8 +33,7 @@ module.exports = function(grunt) {
         // would appear on "index.html"
         files: {
           'masonry.min.js': 'masonry/dist/masonry.pkgd.min.js',
-          'scrollNav.min.js': 'scrollNav/dist/jquery.scrollNav.min.js',
-          'jquery.min.js': 'jquery/jquery.min.js'
+          'scrollNav.min.js': 'scrollNav/dist/jquery.scrollNav.min.js'
         }
       }, // end js_libslibs
     } // end bowercopy
