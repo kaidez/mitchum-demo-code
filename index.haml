@@ -2,8 +2,9 @@
 %html{:lang => "en"}
   %head
     %meta{:charset => "UTF-8"}/
-    %meta{:content => "width=device-width; initial-scale=1.0; maximum-scale=1.0;", :name => "viewport"}/
+    %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0", :name => "viewport"}/
     %title Mitchum - Home
+    %link{:rel => "stylesheet", :media => "all", :href => "css/bootstrap.min.css"}
   %body
     %div.container
       %header
@@ -19,3 +20,6 @@
         %section
           %h2 Page Four
       %footer
+      %script{:src => "js/libs/jquery.min.js"}
+      %script{:src => "js/libs/scrollNav.min.js"}
+      %script{:src => "js/libs/masonry.min.js"}
