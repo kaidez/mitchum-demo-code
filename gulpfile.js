@@ -1,7 +1,8 @@
-var gulp = require('gulp');
-var shell = require('gulp-shell');
-var watch = require('gulp-watch');
-var gulp = require('gulp');
+var gulp = require('gulp'),
+    shell = require('gulp-shell'),
+    watch = require('gulp-watch'),
+    coffee = require('gulp-coffee');
+    
 require('gulp-grunt')(gulp);
 
 // Shell out Haml build command
