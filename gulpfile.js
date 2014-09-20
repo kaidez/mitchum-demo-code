@@ -1,6 +1,9 @@
 var gulp = require('gulp'),
     shell = require('gulp-shell'),
     watch = require('gulp-watch'),
+    
+    // keeps gulp from crashing when Coffeescript generates an error
+    gutil = require('gulp-util'),
     coffee = require('gulp-coffee'),
     livereload = require('gulp-livereload'),
     lr = require('tiny-lr'),
@@ -8,6 +11,16 @@ var gulp = require('gulp'),
 
 require('gulp-grunt')(gulp);
 
+
+var coffeefiles = [
+  'coffee/*.coffee'
+];
+
+gulp.task('coffee', function(){
+  gulp.src(coffeeFiles)
+  .pip(coffee({bare: true}))
+    .on('errpr')
+});
 // Shell out Haml build command
 gulp.task('haml', shell.task(
   'haml index.haml build/index.html'
