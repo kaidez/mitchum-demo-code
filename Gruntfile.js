@@ -36,6 +36,14 @@ module.exports = function(grunt) {
           'scrollNav.min.js': 'scrollNav/dist/jquery.scrollNav.min.js'
         }
       }, // end js_libslibs
+      jquery: {
+        options: {
+          destPrefix: 'build/js/libs'
+        },
+        files: {
+          'jquery.min.js': 'jquery/dist/jquery.min.js',
+        }
+      }
     } // end bowercopy
   });
 

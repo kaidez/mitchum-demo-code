@@ -9,9 +9,14 @@ gulp.task('haml', shell.task(
   'haml index.haml build/index.html'
 ));
 
-gulp.task('bc', function() {
+//
+gulp.task('libs', function() {
+  gulp.run('grunt-bowercopy:js_libs');
+});
+
+gulp.task('jq', function() {
   // run complete grunt tasks
-  gulp.run('grunt-bowercopy');
+  gulp.run('grunt-bowercopy:jquery');
 });
 
 //watch
