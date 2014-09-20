@@ -28,6 +28,7 @@
     "grunt": "^0.4.5",
     "grunt-bowercopy": "^1.1.0",
     "gulp": "^3.8.8",
+    "gulp-coffee": "^2.2.0",
     "gulp-grunt": "^0.5.2",
     "gulp-shell": "^0.2.9",
     "gulp-watch": "^1.0.5"
