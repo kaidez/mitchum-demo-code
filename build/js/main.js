@@ -6,6 +6,7 @@ scroll = (function() {
     showTopLink: false,
     sectionElem: 'div',
     speed: 600,
-    insertTarget: this.containerElement
+    insertTarget: this.containerElement,
+    insertLocation: 'prependTo'
   });
 })();

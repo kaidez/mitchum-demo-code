@@ -5,4 +5,5 @@ scroll = do ->
     sectionElem: 'div'
     speed: 600
     insertTarget: this.containerElement
+    insertLocation: 'prependTo',
   });
