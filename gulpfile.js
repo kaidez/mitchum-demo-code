@@ -1,21 +1,33 @@
+// Single var pattern in full effect
+
+// Define gulp
 var gulp = require('gulp'),
+
+    // Utility plugins
     shell = require('gulp-shell'),
     watch = require('gulp-watch'),
 
-    // keeps gulp from crashing when Coffeescript generates an error
-    gutil = require('gulp-util'),
-    coffee = require('gulp-coffee'),
-    less = require('gulp-less'),
+    // Live reload plugins
     livereload = require('gulp-livereload'),
     lr = require('tiny-lr'),
-    server = lr();
+    server = lr(),
 
+    //START PAGE STRUCTURE PLUGINS
+
+    // Coffescript
+    coffee = require('gulp-coffee'),
+
+    // Store a variable referernce to the project's .coffee file
+    coffeeFiles = ['coffee/main.coffee'],
+
+    // keeps gulp from crashing when Coffeescript generates an error
+    gutil = require('gulp-util'),
+
+    // LESS
+    less = require('gulp-less');
+
+// Make the 'gulp-grunt' plugin work so grunt tasks can be run from Gulp
 require('gulp-grunt')(gulp);
-
-
-var coffeeFiles = [
-  'coffee/main.coffee'
-];
 
 gulp.task('coffee', function(){
   gulp.src(coffeeFiles)
