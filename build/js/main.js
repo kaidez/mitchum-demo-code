@@ -1,5 +1,5 @@
 var scroll;
 
 scroll = (function() {
-  return $('.page').scrollNav();
+  return $('.row').scrollNav();
 })();

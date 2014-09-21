@@ -1,2 +1,2 @@
 scroll = do ->
-  $('.page').scrollNav();
+  $('.row').scrollNav();
