@@ -25,7 +25,7 @@ gulp.task('coffee', function(){
 
 // Shell out Haml build command
 gulp.task('haml', shell.task(
-  'haml index.haml build/index.html'
+  'haml haml/index.haml build/index.html'
 ));
 
 
@@ -43,7 +43,7 @@ gulp.task('watch', function() {
 
   // If 'index.haml', changes, build out 'index.html'
   var server = livereload();
-  gulp.watch('index.haml', ['haml']);
+  gulp.watch('haml/index.haml', ['haml']);
   gulp.watch(coffeeFiles, ['coffee']);
   gulp.watch(["build/index.html", "build/js/*.js"], function(e){
     server.changed(e.path);
