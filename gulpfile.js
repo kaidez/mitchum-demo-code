@@ -14,6 +14,9 @@ var gulp = require('gulp'),
 
     //START PAGE STRUCTURE PLUGINS
 
+    // Add uncss task
+    uncss = require('gulp-uncss'),
+
     // Coffescript
     coffee = require('gulp-coffee'),
 
@@ -48,6 +51,16 @@ gulp.task('less', function () {
     }))
     .pipe(gulp.dest('build/css'));
 });
+
+// uncss task: remove unused files from core Bootstrap CSS file
+gulp.task('uncss', function() {
+  return gulp.src('bower_components/bootstrap/dist/css/bootstrap.css')
+  .pipe(uncss({
+    html: ['build/index.html']
+  }))
+  .pipe(gulp.dest('build/css/'));
+});
+
 
 // Shell out Haml build command
 gulp.task('haml', shell.task(

@@ -17,14 +17,15 @@
           %li Link 3
           %li Link 7
       %main
-        %article
-          %h2 Page One
-        %article
-          %h2 Page Two
-        %article
-          %h2 Page Three
-        %article
-          %h2 Page Four
+        %div.row
+          %article{:class => "page col-md-12"}
+            %h2 Page One
+          %article{:class => "page col-md-12"}
+            %h2 Page Two
+          %article{:class => "page col-md-12"}
+            %h2 Page Three
+          %article{:class => "page col-md-12"}
+            %h2 Page Four
       %footer
       %script{:src => "js/libs/jquery.min.js"}
       %script{:src => "js/libs/scrollNav.min.js"}
