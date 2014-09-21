@@ -2,6 +2,7 @@ var scroll;
 
 scroll = (function() {
   return $('.row').scrollNav({
-    showHeadline: false
+    showHeadline: false,
+    showTopLink: false
   });
 })();
