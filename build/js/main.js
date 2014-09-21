@@ -5,6 +5,7 @@ scroll = (function() {
     showHeadline: false,
     showTopLink: false,
     sectionElem: 'div',
-    speed: 400
+    speed: 600,
+    insertTarget: this.containerElement
   });
 })();

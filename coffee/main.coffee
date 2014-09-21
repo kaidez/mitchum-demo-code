@@ -4,4 +4,5 @@ scroll = do ->
     showTopLink: false
     sectionElem: 'div'
     speed: 600
+    insertTarget: this.containerElement
   });
