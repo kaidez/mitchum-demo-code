@@ -17,14 +17,18 @@ var gulp = require('gulp'),
     // Coffescript
     coffee = require('gulp-coffee'),
 
-    // Store a variable referernce to the project's .coffee file
+    // Store a variable reference to the project's .coffee file
     coffeeFiles = ['coffee/main.coffee'],
 
     // keeps gulp from crashing when Coffeescript generates an error
     gutil = require('gulp-util'),
 
     // LESS
-    less = require('gulp-less');
+    less = require('gulp-less'),
+    path = require('path'),
+
+    // Store a variable reference to the project's .less files
+    lessFiles = ['less/style.less'];
 
 // Make the 'gulp-grunt' plugin work so grunt tasks can be run from Gulp
 require('gulp-grunt')(gulp);
@@ -34,6 +38,15 @@ gulp.task('coffee', function(){
     .pipe(coffee({bare: true})
       .on('error', gutil.log))
     .pipe(gulp.dest('build/js'))
+});
+
+// LESS task
+gulp.task('less', function () {
+  gulp.src(lessFiles)
+    .pipe(less({
+      paths: [ path.join(__dirname, 'less', 'includes') ]
+    }))
+    .pipe(gulp.dest('build/css'));
 });
 
 // Shell out Haml build command
@@ -54,7 +67,7 @@ gulp.task('jq', function() {
   gulp.run('grunt-bowercopy:jquery');
 });
 
-gulp.task('less', function() {
+gulp.task('lessCopy', function() {
   // run complete grunt tasks
   gulp.run('grunt-bowercopy:less');
 });
@@ -65,8 +78,13 @@ gulp.task('watch', function() {
   // If 'index.haml', changes, build out 'index.html'
   var server = livereload();
   gulp.watch('haml/index.haml', ['haml']);
+  gulp.watch(lessFiles, ['less']);
   gulp.watch(coffeeFiles, ['coffee']);
-  gulp.watch(["build/index.html", "build/js/*.js"], function(e){
+  gulp.watch([
+    "build/index.html",
+    "build/js/*.js",
+    "build/css/*.css"
+    ], function(e){
     server.changed(e.path);
   });
 });
