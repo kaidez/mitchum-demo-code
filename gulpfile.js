@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     // keeps gulp from crashing when Coffeescript generates an error
     gutil = require('gulp-util'),
     coffee = require('gulp-coffee'),
+    less = require('gulp-less'),
     livereload = require('gulp-livereload'),
     lr = require('tiny-lr'),
     server = lr();
