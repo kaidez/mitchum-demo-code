@@ -11,6 +11,8 @@ module.exports = function(grunt) {
         ignore: ['less','gulp','jquery'],
         runBower: false
       },
+
+      // copy CSS files over the "build/css" directory
       css_build: {
         // copy over css files
         options: {
