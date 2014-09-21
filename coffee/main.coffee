@@ -1,2 +1,4 @@
 scroll = do ->
-  $('.row').scrollNav();
+  $('.row').scrollNav({
+    showHeadline: false
+  });

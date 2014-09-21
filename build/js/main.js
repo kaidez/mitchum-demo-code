@@ -1,5 +1,7 @@
 var scroll;
 
 scroll = (function() {
-  return $('.row').scrollNav();
+  return $('.row').scrollNav({
+    showHeadline: false
+  });
 })();
