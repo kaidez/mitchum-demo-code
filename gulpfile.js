@@ -41,7 +41,10 @@ gulp.task('haml', shell.task(
   'haml haml/index.haml build/index.html'
 ));
 
-
+/*
+ * Tasks for copying files from "bower_components" to somewhere else.
+ * Uses the "grunt-bowercopy" plugin to do this via "gulp-grunt."
+ */
 gulp.task('libs', function() {
   gulp.run('grunt-bowercopy:js_libs');
 });
@@ -49,6 +52,11 @@ gulp.task('libs', function() {
 gulp.task('jq', function() {
   // run complete grunt tasks
   gulp.run('grunt-bowercopy:jquery');
+});
+
+gulp.task('less', function() {
+  // run complete grunt tasks
+  gulp.run('grunt-bowercopy:less');
 });
 
 //watch
