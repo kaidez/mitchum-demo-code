@@ -8,16 +8,27 @@ module.exports = function(grunt) {
       // don't send messages to saying that Bower components aren't
       // configured...ignore them instead
       options:{
-        ignore: ['less','gulp','normalize-less', 'jquery'],
+        ignore: ['less','gulp','jquery'],
         runBower: false
       },
       css_build: {
-        // copy over cs files
+        // copy over css files
         options: {
           destPrefix: 'build/css'
         },
         files: {
           'bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css'
+        }
+      }, // end css_build
+
+      less: {
+
+        // copy less files over the "less" directory
+        options: {
+          destPrefix: 'less'
+        },
+        files: {
+          'normalize.less': 'normalize-less/normalize.less'
         }
       }, // end css_build
 
@@ -35,16 +46,20 @@ module.exports = function(grunt) {
           'masonry.min.js': 'masonry/dist/masonry.pkgd.min.js',
           'scrollNav.min.js': 'scrollNav/dist/jquery.scrollNav.min.js'
         }
-      }, // end js_libslibs
+      }, // end "js_libs" task
+
+      // start task for copying over jQuery
       jquery: {
+
+        // copy core jQuery over to "build/js/libs"
         options: {
           destPrefix: 'build/js/libs'
         },
         files: {
-          'jquery.min.js': 'jquery/dist/jquery.min.js',
+          'jquery.min.js': 'jquery/jquery.min.js',
         }
-      }
-    } // end bowercopy
+      } // end "jquery" task
+    }
   });
 
   grunt.loadNpmTasks('grunt-bowercopy');
