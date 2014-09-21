@@ -1,2 +1,2 @@
 scroll = do ->
-  $('.post__article').scrollNav();
+  $('.page').scrollNav();
