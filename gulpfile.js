@@ -7,7 +7,7 @@ var gulp = require('gulp'),
     shell = require('gulp-shell'),
     watch = require('gulp-watch'),
 
-    // Live reload plugins
+    // Setup live reload
     livereload = require('gulp-livereload'),
     lr = require('tiny-lr'),
     server = lr(),
@@ -20,7 +20,7 @@ var gulp = require('gulp'),
     // Coffescript
     coffee = require('gulp-coffee'),
 
-    // Store a variable reference to the project's .coffee file
+    // Store a variable reference to the project's main .coffee file
     coffeeFiles = ['coffee/main.coffee'],
 
     // keeps gulp from crashing when Coffeescript generates an error
@@ -30,12 +30,19 @@ var gulp = require('gulp'),
     less = require('gulp-less'),
     path = require('path'),
 
-    // Store a variable reference to the project's .less files
+    // Store a variable reference to the project's main .less file
     lessFiles = ['less/style.less'];
 
 // Make the 'gulp-grunt' plugin work so grunt tasks can be run from Gulp
 require('gulp-grunt')(gulp);
 
+// HAML task
+// Shell out Haml build command
+gulp.task('haml', shell.task(
+  'haml haml/index.haml build/index.html'
+));
+
+// COFFESCRIPT task
 gulp.task('coffee', function(){
   gulp.src(coffeeFiles)
     .pipe(coffee({bare: true})
@@ -61,44 +68,41 @@ gulp.task('uncss', function() {
   .pipe(gulp.dest('build/css/'));
 });
 
-
-// Shell out Haml build command
-gulp.task('haml', shell.task(
-  'haml haml/index.haml build/index.html'
-));
-
 /*
+ * ==================================
+ * COPY STUFF FROM 'bower_components'
+ * ==================================
+ *
  * Tasks for copying files from "bower_components" to somewhere else.
  * Uses the "grunt-bowercopy" plugin to do this via "gulp-grunt."
  */
+
+// Copy everything
 gulp.task('libs', function() {
   gulp.run('grunt-bowercopy:js_libs');
 });
 
+// Copy jQuery only
 gulp.task('jq', function() {
-  // run complete grunt tasks
   gulp.run('grunt-bowercopy:jquery');
 });
 
-gulp.task('lessCopy', function() {
-  // run complete grunt tasks
-  gulp.run('grunt-bowercopy:less');
-});
-
-//watch
+// watch task: be careful of watching too much because it may eat up
+// computer memory...at least, it does in Grunt
 gulp.task('watch', function() {
 
-  // If 'index.haml', changes, build out 'index.html'
+  // If preprocesser files change, run the site build, then refresh it
+  // in the browser via live reload
   var server = livereload();
   gulp.watch('haml/index.haml', ['haml']);
   gulp.watch(lessFiles, ['less']);
   gulp.watch(coffeeFiles, ['coffee']);
   gulp.watch([
     "build/index.html",
-    "build/js/*.js",
-    "build/css/*.css"
-    ], function(e){
-    server.changed(e.path);
+    "build/css/*.css",
+    "build/js/*.js"
+    ], function(e) {
+      server.changed(e.path);
   });
 });
 
