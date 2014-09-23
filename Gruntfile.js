@@ -19,7 +19,7 @@ module.exports = function(grunt) {
           destPrefix: 'build/css'
         },
         files: {
-          'bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css'
+          'bootstrap-custom.css': 'bootstrap/dist/css/bootstrap.min.css'
         }
       }, // end css_build
 

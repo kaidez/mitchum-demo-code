@@ -102,6 +102,12 @@ gulp.task('jq', function() {
   gulp.run('grunt-bowercopy:jquery');
 });
 
+
+// Copy Bootstrap only
+gulp.task('bcbs', function() {
+  gulp.run('grunt-bowercopy:css_build');
+});
+
 gulp.task('images', function () {
     return gulp.src('images/*')
         .pipe(imagemin({
