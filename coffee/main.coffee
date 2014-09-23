@@ -7,3 +7,11 @@ scroll = do ->
     insertTarget: this.containerElement
     insertLocation: 'prependTo',
   });
+
+
+container = document.getElementById('containerElement');
+msnry = new Masonry( container, {
+
+  columnWidth: 200
+  itemSelector: '.mas'
+});
