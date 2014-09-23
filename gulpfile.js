@@ -17,6 +17,9 @@ var gulp = require('gulp'),
     // Add uncss task
     uncss = require('gulp-uncss'),
 
+    // Add csslint task
+    csslint = require('gulp-csslint'),
+
     // Coffescript
     coffee = require('gulp-coffee'),
 
@@ -67,6 +70,14 @@ gulp.task('uncss', function() {
   }))
   .pipe(gulp.dest('build/css/'));
 });
+
+
+gulp.task('csslint', function() {
+  gulp.src('build/css/style.css')
+    .pipe(csslint())
+    .pipe(csslint.reporter());
+});
+
 
 /*
  * ==================================
