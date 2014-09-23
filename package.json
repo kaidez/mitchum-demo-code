@@ -38,6 +38,7 @@
     "gulp-util": "^3.0.1",
     "gulp-watch": "^1.0.7",
     "less": "~1.7.5",
+    "npm-check-updates": "^1.2.0",
     "tiny-lr": "^0.1.4"
   }
 }
