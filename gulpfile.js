@@ -34,7 +34,11 @@ var gulp = require('gulp'),
     path = require('path'),
 
     // Store a variable reference to the project's main .less file
-    lessFiles = ['less/style.less'];
+    lessFiles = ['less/style.less'],
+
+    // Image minificaiton
+    imagemin = require('gulp-imagemin'),
+    pngcrush = require('imagemin-pngcrush');
 
 // Make the 'gulp-grunt' plugin work so grunt tasks can be run from Gulp
 require('gulp-grunt')(gulp);
@@ -96,6 +100,16 @@ gulp.task('libs', function() {
 // Copy jQuery only
 gulp.task('jq', function() {
   gulp.run('grunt-bowercopy:jquery');
+});
+
+gulp.task('images', function () {
+    return gulp.src('images/*')
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngcrush()]
+        }))
+        .pipe(gulp.dest('build/img'));
 });
 
 // watch task: be careful of watching too much because it may eat up
