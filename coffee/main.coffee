@@ -13,5 +13,5 @@ container = document.getElementById('containerElement');
 msnry = new Masonry( container, {
 
   columnWidth: 200
-  itemSelector: '.mas'
+  itemSelector: '.masonryImage'
 });
