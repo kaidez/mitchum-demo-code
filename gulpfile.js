@@ -4,8 +4,9 @@
 var gulp = require('gulp'),
 
     // Utility plugins
-    shell = require('gulp-shell'),
-    watch = require('gulp-watch'),
+    watch = require('gulp-watch'), //watch stuff
+    concat = require('gulp-concat'), // concatenate stuff
+    shell = require('gulp-shell'), // shell comands
 
     // Setup live reload
     livereload = require('gulp-livereload'),
@@ -34,7 +35,7 @@ var gulp = require('gulp'),
     path = require('path'),
 
     // Store a variable reference to the project's main .less file
-    lessFiles = ['less/style.less'],
+    lessFiles = ['css_buildOut/style_development.less'],
 
     // Image minificaiton
     imagemin = require('gulp-imagemin'),
@@ -42,6 +43,58 @@ var gulp = require('gulp'),
 
 // Make the 'gulp-grunt' plugin work so grunt tasks can be run from Gulp
 require('gulp-grunt')(gulp);
+
+
+/*
+ *  ===================================================================
+ *  | CSS BUILD-OUT |
+ *
+ *  The build-out is very detailed: it contains a lot of single tasks as
+ *  well as tasks piped together via gulp.
+ *  ===================================================================
+ */
+
+ // Copy "bootstrap.min.css" only
+ gulp.task('bs', function() {
+   gulp.run('grunt-bowercopy:bs');
+ });
+
+ // Copy "normalize.less" only
+ gulp.task('norm', function() {
+   gulp.run('grunt-bowercopy:norm');
+ });
+
+// LESS task
+gulp.task('less', function () {
+  gulp.src(lessFiles)
+    .pipe(less({
+      paths: [ path.join(__dirname, 'less', 'includes') ]
+    }))
+    .pipe(gulp.dest('css_buildOut/'));
+});
+
+
+// Concatenate some CSS files and send them to "build/css"
+ gulp.task('cssc', function() {
+  gulp.src(['css_buildOut/bootstrap.css', 'css_buildOut/style_development.css'])
+    .pipe(concat('style.css'))
+    .pipe(gulp.dest('build/css'))
+    .pipe(uncss({
+      html: ['build/index.html']
+    }))
+    .pipe(gulp.dest('build/css/'));
+    // then remove duplicate CSS with:
+    // css-purge -i build/css/style.css -o build/css/style_purged.css
+});
+
+
+
+
+
+
+
+
+
 
 // HAML task
 // Shell out Haml build command
@@ -57,18 +110,11 @@ gulp.task('coffee', function(){
     .pipe(gulp.dest('build/js'))
 });
 
-// LESS task
-gulp.task('less', function () {
-  gulp.src(lessFiles)
-    .pipe(less({
-      paths: [ path.join(__dirname, 'less', 'includes') ]
-    }))
-    .pipe(gulp.dest('build/css'));
-});
+
 
 // uncss task: remove unused files from core Bootstrap CSS file
 gulp.task('uncss', function() {
-  return gulp.src('bower_components/bootstrap/dist/css/bootstrap.css')
+  return gulp.src('build/css/style.css')
   .pipe(uncss({
     html: ['build/index.html']
   }))
@@ -103,10 +149,6 @@ gulp.task('jq', function() {
 });
 
 
-// Copy Bootstrap only
-gulp.task('bcbs', function() {
-  gulp.run('grunt-bowercopy:css_build');
-});
 
 gulp.task('images', function () {
     return gulp.src('images/*')

@@ -12,27 +12,27 @@ module.exports = function(grunt) {
         runBower: false
       },
 
-      // copy CSS files over the "build/css" directory
-      css_build: {
-        // copy over css files
+      bs: {
+
+        // copy bootstrap.min.css over the "build/css" directory
         options: {
-          destPrefix: 'build/css'
+          destPrefix: 'css_buildOut'
         },
         files: {
-          'bootstrap-custom.css': 'bootstrap/dist/css/bootstrap.min.css'
+          'bootstrap.css': 'bootstrap/dist/css/bootstrap.css'
         }
-      }, // end css_build
+      }, // end "bs" task
 
-      less: {
+      norm: {
 
         // copy less files over the "less" directory
         options: {
-          destPrefix: 'less'
+          destPrefix: 'css_buildOut'
         },
         files: {
           'normalize.less': 'normalize-less/normalize.less'
         }
-      }, // end css_build
+      }, // end "norm" task
 
       // start task for copying over JS libraries
       js_libs: {
