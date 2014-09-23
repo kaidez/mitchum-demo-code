@@ -1,4 +1,4 @@
-var scroll;
+var container, msnry, scroll;
 
 scroll = (function() {
   return $('.row').scrollNav({
@@ -10,3 +10,10 @@ scroll = (function() {
     insertLocation: 'prependTo'
   });
 })();
+
+container = document.getElementById('containerElement');
+
+msnry = new Masonry(container, {
+  columnWidth: 200,
+  itemSelector: '.mas'
+});
