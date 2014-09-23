@@ -71,7 +71,7 @@ gulp.task('uncss', function() {
   .pipe(gulp.dest('build/css/'));
 });
 
-
+// CSSLINT task
 gulp.task('csslint', function() {
   gulp.src('build/css/style.css')
     .pipe(csslint())
