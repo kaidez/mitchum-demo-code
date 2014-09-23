@@ -38,6 +38,7 @@
     "gulp-uncss": "^0.4.5",
     "gulp-util": "^3.0.1",
     "gulp-watch": "^1.0.7",
+    "imagemin-pngcrush": "^1.0.0",
     "install": "^0.1.7",
     "less": "~1.7.5",
     "npm": "^2.0.0",
