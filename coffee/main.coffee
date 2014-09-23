@@ -12,6 +12,7 @@ scroll = do ->
 container = document.getElementById('containerElement');
 msnry = new Masonry( container, {
 
-  columnWidth: 200
+  columnWidth: 300
   itemSelector: '.masonryImage'
+  "gutter": 10
 });

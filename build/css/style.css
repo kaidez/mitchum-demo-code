@@ -199,3 +199,6 @@ nav {
 .masonryImage {
   width: 25%;
 }
+#containerElement .masonryImage {
+  margin-bottom: 14px;
+}
