@@ -35,7 +35,7 @@ var gulp = require('gulp'),
     path = require('path'),
 
     // Store a variable reference to the project's main .less file
-    lessFiles = ['css_buildOut/style_development.less'],
+    lessFiles = ['css_buildOut/style.less'],
 
     // Image minificaiton
     imagemin = require('gulp-imagemin'),
@@ -76,7 +76,7 @@ gulp.task('less', function () {
 
 // Concatenate some CSS files and send them to "build/css"
  gulp.task('cssc', function() {
-  gulp.src(['css_buildOut/bootstrap.css', 'css_buildOut/style_development.css'])
+  gulp.src(['css_buildOut/bootstrap.css', 'css_buildOut/style.css'])
     .pipe(concat('style.css'))
     .pipe(gulp.dest('build/css'))
     .pipe(uncss({
