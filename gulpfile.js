@@ -1,31 +1,34 @@
 // Single var pattern in full effect
 
 // Define gulp
-var gulp = require('gulp'),
+var gulp = require('gulp');
 
     // Utility plugins
-    watch = require('gulp-watch'), //watch stuff
-    concat = require('gulp-concat'), // concatenate stuff
-    shell = require('gulp-shell'), // shell comands
+  var watch = require('gulp-watch'); //watch stuff
+  var minify = require('gulp-min'); // minify stuff
+  var shell = require('gulp-shell'); // shell comands
 
-    // Setup live reload
-    livereload = require('gulp-livereload'),
-    lr = require('tiny-lr'),
-    server = lr(),
+  var concat = require('gulp-concat');
 
-    //START PAGE STRUCTURE PLUGINS
+// Setup live reload
+var livereload = require('gulp-livereload')
 
-    // Add uncss task
-    uncss = require('gulp-uncss'),
+var lr = require('tiny-lr');
+var server = lr();
 
-    // Add csslint task
-    csslint = require('gulp-csslint'),
+//START PAGE STRUCTURE PLUGINS
+
+// Add uncss task
+var uncss = require('gulp-uncss');
+
+// Add csslint task
+var csslint = require('gulp-csslint');
 
     // Coffescript
-    coffee = require('gulp-coffee'),
+var coffee = require('gulp-coffee');
 
     // Store a variable reference to the project's main .coffee file
-    coffeeFiles = ['coffee/main.coffee'],
+    var coffeeFiles = ['coffee/main.coffee'],
 
     // keeps gulp from crashing when Coffeescript generates an error
     gutil = require('gulp-util'),
@@ -64,28 +67,44 @@ require('gulp-grunt')(gulp);
    gulp.run('grunt-bowercopy:norm');
  });
 
-// LESS task
+// LESS task...css_buildOut/style.less becomes css_buildOut/style.css
 gulp.task('less', function () {
-  gulp.src(lessFiles)
-    .pipe(less({
-      paths: [ path.join(__dirname, 'less', 'includes') ]
-    }))
-    .pipe(gulp.dest('css_buildOut/'));
+gulp.src(["less/style.less", "less/scrollNav.less"])
+  .pipe(less({
+    paths: [ path.join(__dirname, 'less', 'includes') ]
+  }))
+  .pipe(gulp.dest('css_buildOut/'))
 });
 
 
 // Concatenate some CSS files and send them to "build/css"
- gulp.task('cssc', function() {
-  gulp.src(['css_buildOut/bootstrap.css', 'css_buildOut/style.css'])
-    .pipe(concat('style.css'))
-    .pipe(gulp.dest('build/css'))
-    .pipe(uncss({
-      html: ['build/index.html']
-    }))
+gulp.task('cssc', function () {
+  gulp.src('css_buildOut/*.css')
+    .pipe(concat("style.css"))
     .pipe(gulp.dest('build/css/'));
-    // then remove duplicate CSS with:
-    // css-purge -i build/css/style.css -o build/css/style_purged.css
 });
+
+
+
+// uncss task: remove unused files from core Bootstrap CSS file
+gulp.task('uncss', function() {
+  return gulp.src('build/css/style.css')
+  .pipe(uncss({
+    html: ['build/index.html'],
+    ignore: ['.scroll-nav', '.scroll-nav__list']
+
+  }))
+  .pipe(gulp.dest('build/'));
+});
+
+// CSSLINT task
+gulp.task('lint', function() {
+  gulp.src('build/css/style.css')
+    .pipe(csslint())
+    .pipe(csslint.reporter());
+});
+
+
 
 
 
@@ -102,6 +121,15 @@ gulp.task('haml', shell.task(
   'haml haml/index.haml build/index.html'
 ));
 
+gulp.task('dupes', shell.task(
+  'css-purge -i build/css/style.css -o build/css/styles.min.css'
+));
+
+
+
+
+
+
 // COFFESCRIPT task
 gulp.task('coffee', function(){
   gulp.src(coffeeFiles)
@@ -112,21 +140,6 @@ gulp.task('coffee', function(){
 
 
 
-// uncss task: remove unused files from core Bootstrap CSS file
-gulp.task('uncss', function() {
-  return gulp.src('build/css/style.css')
-  .pipe(uncss({
-    html: ['build/index.html']
-  }))
-  .pipe(gulp.dest('build/css/'));
-});
-
-// CSSLINT task
-gulp.task('csslint', function() {
-  gulp.src('build/css/style.css')
-    .pipe(csslint())
-    .pipe(csslint.reporter());
-});
 
 
 /*
