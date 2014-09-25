@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/kaidez/mitchum-demo-code",
   "devDependencies": {
+    "css-purge": "^1.1.1",
     "grunt": "^0.4.5",
     "grunt-bowercopy": "^1.1.0",
     "gulp": "^3.8.8",
