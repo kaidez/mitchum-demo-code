@@ -40,8 +40,7 @@ var gutil = require('gulp-util');
 var imagemin = require('gulp-imagemin');
 var pngcrush = require('imagemin-pngcrush');
 
-// Store a variable reference to the project's main .less file
-var lessFiles = ['less/*.less']; //LESS files
+
 var coffeeFiles = ['coffee/main.coffee']; // COFFEESCRIPT FILES
 
 
@@ -51,85 +50,65 @@ require('gulp-grunt')(gulp);
 
 /*
  *  ===================================================================
- *  | CSS BUILD-OUT |
+ *  | START CSS BUILD-OUT |
  *
  *  The build-out is very detailed: it contains a lot of single tasks as
  *  well as tasks piped together via gulp.
  *  ===================================================================
  */
 
- // Copy "bootstrap.min.css" only
- gulp.task('bs', function() {
-   gulp.run('grunt-bowercopy:bs');
- });
 
- // Copy "normalize.less" only
- gulp.task('norm', function() {
-   gulp.run('grunt-bowercopy:norm');
- });
+
+// Store a variable reference to the project's .less files
+var lessFiles = ['less/*.less']; //LESS files
 
 // LESS task...css_buildOut/style.less becomes css_buildOut/style.css
-gulp.task('less', function () {
-gulp.src(lessFiles)
+gulp.task('less', function() {
+var stream = gulp.src(lessFiles)
   .pipe(less({
     paths: [ path.join(__dirname, 'less', 'includes') ]
   }))
-  .pipe(gulp.dest('cssSrc/'))
+  .pipe(gulp.dest('cssSrc/'));
+  return stream;
 });
 
 
-
-// uncss task: remove unused files from core Bootstrap CSS file
-gulp.task('uncss', function() {
-  return gulp.src('cssSrc/*.css')
-  .pipe(uncss({
-    html: ['build/index.html'],
-  }))
-  .pipe(gulp.dest('build/css/'));
-});
-
-
-
-// Concatenate some CSS files and send them to "build/css"
-gulp.task('cssc', function () {
-  gulp.src(['build/css/bootstrap.css', 'build/css/scrollNav.css', 'build/css/style.css'])
-    .pipe(concat("style.css"))
-    .pipe(gulp.dest('build/css/'));
-});
-
-gulp.task('test', function(){
-
-});
-
-
-
-gulp.task('dupes', shell.task(
-  'css-purge -i build/css/style.dev.css -o build/css/style.con.css'
-));
-
-// CSSLINT task
-gulp.task('lint', function() {
-  gulp.src('build/css/style.css')
-    .pipe(csslint())
-    .pipe(csslint.reporter());
-});
-
-
-
-
+// Define selectors that should be ignored when "uncss" removes unused
+//  CSS
+var ignoreArray = [
+  'nav',
+  '.scroll-nav',
+  '.scroll-nav__list',
+  '.scroll-nav__item'
+  ];
 
 // LESS task...css_buildOut/style.less becomes css_buildOut/style.css
-gulp.task('test', function () {
-  gulp.src('cssSrc/*.css')
+gulp.task('startCssBuild',function () {
+  var stream = gulp.src('cssSrc/*.css')
   .pipe(uncss({
     html: ['build/index.html'],
+    ignore: ignoreArray
   }))
   .pipe(concat("style.css"))
   .pipe(gulp.dest('build/css/'))
   .pipe(csslint())
   .pipe(csslint.reporter());
+  return stream;
 });
 
+
+gulp.task('dupes', shell.task(
+  'css-purge -i build/css/style.css -o build/css/style.css'
+));
+
+gulp.task('buildcss', ['less', 'startCssBuild', 'dupes']);
+
+
+/*
+ *  ===================================================================
+ *  | END CSS BUILD-OUT |
+ *  ===================================================================
+ */
 
 
 
