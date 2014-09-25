@@ -23,17 +23,6 @@ module.exports = function(grunt) {
         }
       }, // end "bs" task
 
-      norm: {
-
-        // copy less files over the "less" directory
-        options: {
-          destPrefix: 'css_buildOut'
-        },
-        files: {
-          'normalize.less': 'normalize-less/normalize.less'
-        }
-      }, // end "norm" task
-
       // start task for copying over JS libraries
       js_libs: {
 
