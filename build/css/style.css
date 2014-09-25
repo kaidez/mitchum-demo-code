@@ -228,38 +228,7 @@ h2 {
 
 /*# sourceMappingURL=bootstrap.css.map */
 
-/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 
-html {
-  font-family: sans-serif;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  margin: 0;
-}
-
-article,
-footer,
-header,
-main {
-  display: block;
-}
-
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
-
-img {
-  border: 0;
-}
-
-button input::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
 
 .page {
   height: 600px;

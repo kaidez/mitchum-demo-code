@@ -1,46 +1,49 @@
-// Single var pattern in full effect
-
 // Define gulp
 var gulp = require('gulp');
 
 // Utility plugins
 var watch = require('gulp-watch'); //watch stuff
 var minify = require('gulp-min'); // minify stuff
-var shell = require('gulp-shell'); // shell comands
 var concat = require('gulp-concat'); // concat stuff
+var shell = require('gulp-shell'); // shell comands
 
 // Setup live reload
 var livereload = require('gulp-livereload')
 var lr = require('tiny-lr');
 var server = lr();
 
-//START PAGE STRUCTURE PLUGINS
+/*
+ * CSS TASKS
+ */
 
-// Add uncss task
+// task for removing unused CSS
 var uncss = require('gulp-uncss');
 
+// LESS task
+var less = require('gulp-less');
+var path = require('path');
 // Add csslint task
 var csslint = require('gulp-csslint');
 
+/*
+ * =================
+ * JAVASCRIPT TASKS
+ * =================
+ */
 // Coffescript
 var coffee = require('gulp-coffee');
-
-// Store a variable reference to the project's main .coffee file
-var coffeeFiles = ['coffee/main.coffee'];
 
 // keeps gulp from crashing when Coffeescript generates an error
 var gutil = require('gulp-util');
 
-// LESS
-var less = require('gulp-less');
-var path = require('path');
-
-// Store a variable reference to the project's main .less file
-var lessFiles = ['css_buildOut/style.less'];
-
-// Image minificaiton
+// IMAGE MINIFICATION TASKS
 var imagemin = require('gulp-imagemin');
 var pngcrush = require('imagemin-pngcrush');
+
+// Store a variable reference to the project's main .less file
+var lessFiles = ['less/*.less']; //LESS files
+var coffeeFiles = ['coffee/main.coffee']; // COFFEESCRIPT FILES
+
 
 // Make the 'gulp-grunt' plugin work so grunt tasks can be run from Gulp
 require('gulp-grunt')(gulp);
@@ -67,33 +70,42 @@ require('gulp-grunt')(gulp);
 
 // LESS task...css_buildOut/style.less becomes css_buildOut/style.css
 gulp.task('less', function () {
-gulp.src(["less/style.less", "less/scrollNav.less"])
+gulp.src(lessFiles)
   .pipe(less({
     paths: [ path.join(__dirname, 'less', 'includes') ]
   }))
-  .pipe(gulp.dest('css_buildOut/'))
-});
-
-
-// Concatenate some CSS files and send them to "build/css"
-gulp.task('cssc', function () {
-  gulp.src('css_buildOut/*.css')
-    .pipe(concat("style.css"))
-    .pipe(gulp.dest('build/css/'));
+  .pipe(gulp.dest('cssSrc/'))
 });
 
 
 
 // uncss task: remove unused files from core Bootstrap CSS file
 gulp.task('uncss', function() {
-  return gulp.src('build/css/style.css')
+  return gulp.src('cssSrc/*.css')
   .pipe(uncss({
     html: ['build/index.html'],
-    ignore: ['.scroll-nav', '.scroll-nav__list']
-
   }))
-  .pipe(gulp.dest('build/'));
+  .pipe(gulp.dest('build/css/'));
 });
+
+
+
+// Concatenate some CSS files and send them to "build/css"
+gulp.task('cssc', function () {
+  gulp.src(['build/css/bootstrap.css', 'build/css/scrollNav.css', 'build/css/style.css'])
+    .pipe(concat("style.css"))
+    .pipe(gulp.dest('build/css/'));
+});
+
+gulp.task('test', function(){
+
+});
+
+
+
+gulp.task('dupes', shell.task(
+  'css-purge -i build/css/style.dev.css -o build/css/style.con.css'
+));
 
 // CSSLINT task
 gulp.task('lint', function() {
@@ -106,7 +118,17 @@ gulp.task('lint', function() {
 
 
 
-
+// LESS task...css_buildOut/style.less becomes css_buildOut/style.css
+gulp.task('test', function () {
+  gulp.src('cssSrc/*.css')
+  .pipe(uncss({
+    html: ['build/index.html'],
+  }))
+  .pipe(concat("style.css"))
+  .pipe(gulp.dest('build/css/'))
+  .pipe(csslint())
+  .pipe(csslint.reporter());
+});
 
 
 
@@ -119,9 +141,7 @@ gulp.task('haml', shell.task(
   'haml haml/index.haml build/index.html'
 ));
 
-gulp.task('dupes', shell.task(
-  'css-purge -i build/css/style.css -o build/css/styles.min.css'
-));
+
 
 
 
@@ -159,8 +179,13 @@ gulp.task('jq', function() {
   gulp.run('grunt-bowercopy:jquery');
 });
 
+// Copy Bootstrap only
+gulp.task('bs', function() {
+  gulp.run('grunt-bowercopy:bs');
+});
 
 
+// Minify images in "images" and move them over to "img"
 gulp.task('images', function () {
     return gulp.src('images/*')
         .pipe(imagemin({
