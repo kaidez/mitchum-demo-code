@@ -64,12 +64,12 @@ var lessFiles = ['less/*.less']; //LESS files
 
 // LESS task...css_buildOut/style.less becomes css_buildOut/style.css
 gulp.task('less', function() {
-var stream = gulp.src(lessFiles)
+gulp.src(lessFiles)
   .pipe(less({
     paths: [ path.join(__dirname, 'less', 'includes') ]
   }))
   .pipe(gulp.dest('cssSrc/'));
-  return stream;
+
 });
 
 
@@ -84,7 +84,7 @@ var ignoreArray = [
 
 // LESS task...css_buildOut/style.less becomes css_buildOut/style.css
 gulp.task('startCssBuild',function () {
-  var stream = gulp.src('cssSrc/*.css')
+  gulp.src('cssSrc/*.css')
   .pipe(uncss({
     html: ['build/index.html'],
     ignore: ignoreArray
@@ -93,7 +93,6 @@ gulp.task('startCssBuild',function () {
   .pipe(gulp.dest('build/css/'))
   .pipe(csslint())
   .pipe(csslint.reporter());
-  return stream;
 });
 
 
@@ -101,7 +100,12 @@ gulp.task('dupes', shell.task(
   'css-purge -i build/css/style.css -o build/css/style.css'
 ));
 
-gulp.task('buildcss', ['less', 'startCssBuild', 'dupes']);
+gulp.task('buildcss', ['startCssBuild', 'dupes']);
+
+
+
+
+
 
 
 /*
