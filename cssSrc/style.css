@@ -1,0 +1,10 @@
+.page {
+  height: 600px;
+  border: 1px solid red;
+}
+.masonryImage {
+  width: 25%;
+}
+#containerElement .masonryImage {
+  margin-bottom: 14px;
+}
