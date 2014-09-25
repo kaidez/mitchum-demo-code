@@ -14,9 +14,9 @@ module.exports = function(grunt) {
 
       bs: {
 
-        // copy bootstrap.min.css over the "build/css" directory
+        // copy bootstrap.min.css over the "cssSrc" directory
         options: {
-          destPrefix: 'css_buildOut'
+          destPrefix: 'cssSrc'
         },
         files: {
           'bootstrap.css': 'bootstrap/dist/css/bootstrap.css'
