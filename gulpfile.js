@@ -3,16 +3,14 @@
 // Define gulp
 var gulp = require('gulp');
 
-    // Utility plugins
-  var watch = require('gulp-watch'); //watch stuff
-  var minify = require('gulp-min'); // minify stuff
-  var shell = require('gulp-shell'); // shell comands
-
-  var concat = require('gulp-concat');
+// Utility plugins
+var watch = require('gulp-watch'); //watch stuff
+var minify = require('gulp-min'); // minify stuff
+var shell = require('gulp-shell'); // shell comands
+var concat = require('gulp-concat'); // concat stuff
 
 // Setup live reload
 var livereload = require('gulp-livereload')
-
 var lr = require('tiny-lr');
 var server = lr();
 
@@ -24,25 +22,25 @@ var uncss = require('gulp-uncss');
 // Add csslint task
 var csslint = require('gulp-csslint');
 
-    // Coffescript
+// Coffescript
 var coffee = require('gulp-coffee');
 
-    // Store a variable reference to the project's main .coffee file
-    var coffeeFiles = ['coffee/main.coffee'],
+// Store a variable reference to the project's main .coffee file
+var coffeeFiles = ['coffee/main.coffee'];
 
-    // keeps gulp from crashing when Coffeescript generates an error
-    gutil = require('gulp-util'),
+// keeps gulp from crashing when Coffeescript generates an error
+var gutil = require('gulp-util');
 
-    // LESS
-    less = require('gulp-less'),
-    path = require('path'),
+// LESS
+var less = require('gulp-less');
+var path = require('path');
 
-    // Store a variable reference to the project's main .less file
-    lessFiles = ['css_buildOut/style.less'],
+// Store a variable reference to the project's main .less file
+var lessFiles = ['css_buildOut/style.less'];
 
-    // Image minificaiton
-    imagemin = require('gulp-imagemin'),
-    pngcrush = require('imagemin-pngcrush');
+// Image minificaiton
+var imagemin = require('gulp-imagemin');
+var pngcrush = require('imagemin-pngcrush');
 
 // Make the 'gulp-grunt' plugin work so grunt tasks can be run from Gulp
 require('gulp-grunt')(gulp);
