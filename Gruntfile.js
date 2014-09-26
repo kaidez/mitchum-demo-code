@@ -55,7 +55,4 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-bowercopy');
 
-  // Default task(s).
-  // grunt.registerTask('default', ['uglify']);
-
 };
