@@ -1,20 +1,18 @@
-var container, msnry, scroll;
+var msnry, scroll;
 
 scroll = (function() {
-  return $('.row').scrollNav({
+  return $(".row").scrollNav({
     showHeadline: false,
     showTopLink: false,
-    sectionElem: 'div',
+    sectionElem: "div",
     speed: 600,
     insertTarget: this.containerElement,
-    insertLocation: 'prependTo'
+    insertLocation: "prependTo"
   });
 })();
 
-container = document.getElementById('containerElement');
-
-msnry = new Masonry(container, {
+msnry = new Masonry("#container", {
   columnWidth: 300,
-  itemSelector: '.masonryImage',
+  itemSelector: ".masonryImage",
   "gutter": 10
 });
