@@ -50,8 +50,6 @@ var gutil = require('gulp-util');
 var imagemin = require('gulp-imagemin');
 var pngcrush = require('imagemin-pngcrush');
 
-
-
 // Make the 'gulp-grunt' plugin work so grunt tasks can be run from Gulp
 require('gulp-grunt')(gulp);
 
@@ -79,7 +77,6 @@ gulp.src(lessFiles)
   .pipe(gulp.dest('cssSrc/'));
 
 });
-
 
 // Define selectors that should be ignored when "uncss" removes unused
 //  CSS
@@ -110,12 +107,6 @@ gulp.task('dupes', shell.task(
 
 gulp.task('buildcss', ['startCssBuild', 'dupes']);
 
-
-
-
-
-
-
 /*
  *  ===================================================================
  *  | END CSS BUILD-OUT |
@@ -123,6 +114,11 @@ gulp.task('buildcss', ['startCssBuild', 'dupes']);
  */
 
 
+/*
+ *  ===================================================================
+ *  | START JADE BUILD-OUT |
+ *  ===================================================================
+ */
 
 // Jade global variables
 var VARIABLES = {
@@ -140,6 +136,19 @@ gulp.task('jade', function() {
     .pipe(gulp.dest('build'))
 });
 
+/*
+ *  ===================================================================
+ *  | END JADE BUILD-OUT |
+ *  ===================================================================
+ */
+
+
+/*
+ *  ===================================================================
+ *  | START COFFEESCRIPT BUILD-OUT |
+ *  ===================================================================
+ */
+
 // Store a variable reference to the project's .less files
 var coffeeFiles = ['coffee/main.coffee'];
 
@@ -150,6 +159,14 @@ gulp.task('coffee', function(){
       .on('error', gutil.log))
     .pipe(gulp.dest('build/js'))
 });
+
+
+/*
+ *  ===================================================================
+ *  | END COFFEESCRIPT BUILD-OUT |
+ *  ===================================================================
+ */
+
 
 /*
  * ==================================
@@ -175,6 +192,18 @@ gulp.task('bs', function() {
   gulp.run('grunt-bowercopy:bs');
 });
 
+/*
+ * ==================================
+ * END STUFF FROM 'bower_components'
+ * ==================================
+ */
+
+
+/*
+ *  ===================================================================
+ *  | START IMAGE MINIFICATION |
+ *  ===================================================================
+ */
 
 // Minify images in "images" and move them over to "img"
 gulp.task('images', function () {
@@ -187,8 +216,22 @@ gulp.task('images', function () {
         .pipe(gulp.dest('build/img'));
 });
 
-// WATCH TASK: be careful of watching too much because it may eat up
-// computer memory...at least, it does in Grunt
+/*
+ *  ===================================================================
+ *  | END IMAGE MINIFICATION |
+ *  ===================================================================
+ */
+
+
+/*
+ *  ===================================================================
+ *  | START WATCH TASK |
+ *
+ * be careful of watching too much because it may eat up computer
+ * memory...at least, it does in Grunt
+ *  ===================================================================
+ */
+
 gulp.task('watch', function() {
 
   // If preprocesser files change, run the site build, then refresh it
@@ -205,6 +248,12 @@ gulp.task('watch', function() {
       server.changed(e.path);
   });
 });
+
+/*
+ *  ===================================================================
+ *  | END WATCH TASK |
+ *  ===================================================================
+ */
 
 // Test to see if gulp is installed
 gulp.task('default', function() {
