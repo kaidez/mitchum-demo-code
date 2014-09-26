@@ -10,7 +10,6 @@ scroll = do ->
 
 
 msnry = new Masonry( "#container", {
-
   columnWidth: 300
   itemSelector: ".masonryImage"
   "gutter": 10
