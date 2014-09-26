@@ -1,3 +1,7 @@
+###
+start scrollNav code
+###
+
 scroll = do ->
   $(".row").scrollNav({
     showHeadline: false
@@ -13,3 +17,6 @@ msnry = new Masonry( "#containerElement", {
   itemSelector: ".masonryImage"
   "gutter": 10
 });
+###
+end scrollNav code
+###

@@ -1,3 +1,7 @@
+
+/*
+start scrollNav code
+ */
 var msnry, scroll;
 
 scroll = (function() {
@@ -16,3 +20,8 @@ msnry = new Masonry("#containerElement", {
   itemSelector: ".masonryImage",
   "gutter": 10
 });
+
+
+/*
+end scrollNav code
+ */
