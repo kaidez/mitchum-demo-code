@@ -8,8 +8,7 @@ scroll = do ->
     insertLocation: "prependTo",
   });
 
-
-msnry = new Masonry( "#container", {
+msnry = new Masonry( "#containerElement", {
   columnWidth: 300
   itemSelector: ".masonryImage"
   "gutter": 10
