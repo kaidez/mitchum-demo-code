@@ -1,15 +1,9 @@
 doctype html
-html(lang="en")
-  include includes/header.jade
+include includes/head.jade
   body
-    h1 Jade - node template engine
-    .container #containerElement
+    #containerElement.container
       header
-        h1(id="pageHeader")
+        h1(id="pageHeader") Home Page
       main
-      footer
-      script(src="js/libs/jquery.min.js")
-      script(src="js/libs/scrollNav.min.js")
-      script(src="js/libs/masonry.min.js")
-      script(src="js/main.js")
-      <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+        .row
+      include includes/footer.jade
