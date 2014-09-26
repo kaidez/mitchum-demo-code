@@ -4,8 +4,8 @@ scroll = do ->
     showTopLink: false
     sectionElem: "div"
     speed: 600
-    insertTarget: this.containerElement
-    insertLocation: "prependTo",
+    insertTarget: this.headerElements
+    insertLocation: "appendTo",
   });
 
 msnry = new Masonry( "#containerElement", {
