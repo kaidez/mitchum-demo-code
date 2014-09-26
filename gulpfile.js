@@ -13,16 +13,26 @@ var lr = require('tiny-lr');
 var server = lr();
 
 /*
+ * =================
+ * JADE TASKS
+ * =================
+ */
+var jade = require('gulp-jade');
+
+/*
+ * =================
  * CSS TASKS
+ * =================
  */
 
 // task for removing unused CSS
 var uncss = require('gulp-uncss');
 
-// LESS task
+// LESS
 var less = require('gulp-less');
 var path = require('path');
-// Add csslint task
+
+// Add CSSLint
 var csslint = require('gulp-csslint');
 
 /*
@@ -40,11 +50,6 @@ var gutil = require('gulp-util');
 var imagemin = require('gulp-imagemin');
 var pngcrush = require('imagemin-pngcrush');
 
-
-var coffeeFiles = ['coffee/main.coffee']; // COFFEESCRIPT FILES
-
-
-var jade = require('gulp-jade');
 
 
 // Make the 'gulp-grunt' plugin work so grunt tasks can be run from Gulp
@@ -125,18 +130,18 @@ var VARIABLES = {
   metaD: 'Meta Description'
 };
 
-// Output Jade Files "DESKTOP" content
+// Output Jade Files to build "index.html" & send it to "build/"
 gulp.task('index', function() {
-
   return gulp.src('jade/*.jade')
     .pipe(jade({
       locals: VARIABLES,
       pretty: true
     }))
     .pipe(gulp.dest('build'))
-
 });
 
+// Store a variable reference to the project's .less files
+var coffeeFiles = ['coffee/main.coffee'];
 
 // COFFESCRIPT task
 gulp.task('coffee', function(){
@@ -145,10 +150,6 @@ gulp.task('coffee', function(){
       .on('error', gutil.log))
     .pipe(gulp.dest('build/js'))
 });
-
-
-
-
 
 /*
  * ==================================
@@ -159,7 +160,7 @@ gulp.task('coffee', function(){
  * Uses the "grunt-bowercopy" plugin to do this via "gulp-grunt."
  */
 
-// Copy everything
+// Copy all the site's JS librairies
 gulp.task('libs', function() {
   gulp.run('grunt-bowercopy:js_libs');
 });
