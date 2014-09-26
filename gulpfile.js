@@ -74,7 +74,7 @@ require('gulp-grunt')(gulp);
 
 
 // Store a variable reference to the project's .less files
-var lessFiles = ['less/*.less']; //LESS files
+var lessFiles = ['less/*.less', 'less/**/*.less']; //LESS files
 
 // LESS task...css_buildOut/style.less becomes css_buildOut/style.css
 gulp.task('less', function() {
