@@ -1,3 +1,18 @@
+.hideElement {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+}
+.hideText {
+  text-indent: -9999px;
+}
+.pageTitle {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+}
 .page {
   height: 600px;
   border: 1px solid red;

@@ -1,3 +1,5 @@
+
+
 html {
 	font-family: sans-serif;
 	-webkit-text-size-adjust: 100%;
@@ -171,7 +173,8 @@ h2 {
 @-ms-viewport {
 	width: device-width;
 }
-.scroll-nav {
+
+.headerClass {
 	position: fixed;
 	background-color: red;
 	z-index: 2;
@@ -182,6 +185,11 @@ h2 {
 }
 .scroll-nav__item {
 	display: inline-block;
+}
+.hideElement {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
 }
 .page {
 	height: 600px;
