@@ -131,8 +131,8 @@ var VARIABLES = {
 };
 
 // Output Jade Files to build "index.html" & send it to "build/"
-gulp.task('index', function() {
-  return gulp.src('jade/*.jade')
+gulp.task('jade', function() {
+  return gulp.src('jade/index.jade')
     .pipe(jade({
       locals: VARIABLES,
       pretty: true
@@ -187,14 +187,14 @@ gulp.task('images', function () {
         .pipe(gulp.dest('build/img'));
 });
 
-// watch task: be careful of watching too much because it may eat up
+// WATCH TASK: be careful of watching too much because it may eat up
 // computer memory...at least, it does in Grunt
 gulp.task('watch', function() {
 
   // If preprocesser files change, run the site build, then refresh it
   // in the browser via live reload
   var server = livereload();
-  gulp.watch('haml/index.haml', ['haml']);
+  gulp.watch('jade/includes/*.jade', ['jade']);
   gulp.watch(lessFiles, ['less']);
   gulp.watch(coffeeFiles, ['coffee']);
   gulp.watch([
