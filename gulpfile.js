@@ -1,54 +1,62 @@
+// Single var pattern in full effect
+
 // Define gulp
 var gulp = require('gulp');
 
-// Utility plugins
-var watch = require('gulp-watch'); //watch stuff
-var minify = require('gulp-min'); // minify stuff
-var concat = require('gulp-concat'); // concat stuff
-var shell = require('gulp-shell'); // shell comands
+  // Utility plugins
+  watch = require('gulp-watch');,//watch stuff
+  minify = require('gulp-min'), // minify stuff
+  concat = require('gulp-concat'), // concat stuff
+  shell = require('gulp-shell'), // shell comands
 
-// Setup live reload
-var livereload = require('gulp-livereload')
-var lr = require('tiny-lr');
-var server = lr();
+  // Setup live reload
+  livereload = require('gulp-livereload'),
+  lr = require('tiny-lr'),
+  server = lr(),
 
-/*
- * =================
- * JADE TASKS
- * =================
- */
-var jade = require('gulp-jade');
+  /*
+   * =================
+   * JADE TASKS
+   * =================
+   */
+  jade = require('gulp-jade'),
 
-/*
- * =================
- * CSS TASKS
- * =================
- */
+  /*
+   * =================
+   * CSS TASKS
+   * =================
+   */
 
-// task for removing unused CSS
-var uncss = require('gulp-uncss');
+  // task for removing unused CSS
+  uncss = require('gulp-uncss'),
 
-// LESS
-var less = require('gulp-less');
-var path = require('path');
+  // LESS
+  less = require('gulp-less'),
+  path = require('path'),
 
-// Add CSSLint
-var csslint = require('gulp-csslint');
+  // Add CSSLint
+  csslint = require('gulp-csslint'),
 
-/*
- * =================
- * JAVASCRIPT TASKS
- * =================
- */
-// Coffescript
-var coffee = require('gulp-coffee');
+  /*
+   * =================
+   * JAVASCRIPT TASKS
+   * =================
+   */
 
-// keeps gulp from crashing when Coffeescript generates an error
-var gutil = require('gulp-util');
+  // Coffescript
+  coffee = require('gulp-coffee'),
 
-// IMAGE MINIFICATION TASKS
-var imagemin = require('gulp-imagemin');
-var pngcrush = require('imagemin-pngcrush');
+  // keeps gulp from crashing when Coffeescript generates an error
+  gutil = require('gulp-util'),
+
+  /*
+   * ========================
+   * IMAGE MINIFICATION TASKS
+   * ========================
+   */
+
+  imagemin = require('gulp-imagemin'),
+  pngcrush = require('imagemin-pngcrush');
 
 // Make the 'gulp-grunt' plugin work so grunt tasks can be run from Gulp
 require('gulp-grunt')(gulp);
