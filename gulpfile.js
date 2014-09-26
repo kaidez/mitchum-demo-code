@@ -44,6 +44,9 @@ var pngcrush = require('imagemin-pngcrush');
 var coffeeFiles = ['coffee/main.coffee']; // COFFEESCRIPT FILES
 
 
+var jade = require('gulp-jade');
+
+
 // Make the 'gulp-grunt' plugin work so grunt tasks can be run from Gulp
 require('gulp-grunt')(gulp);
 
@@ -116,19 +119,23 @@ gulp.task('buildcss', ['startCssBuild', 'dupes']);
 
 
 
+// Jade global variables
+var VARIABLES = {
+  pageTitle: 'Page Title',
+  metaD: 'Meta Description'
+};
 
+// Output Jade Files "DESKTOP" content
+gulp.task('index', function() {
 
-// HAML task
-// Shell out Haml build command
-gulp.task('haml', shell.task(
-  'haml haml/index.haml build/index.html'
-));
+  return gulp.src('jade/*.jade')
+    .pipe(jade({
+      locals: VARIABLES,
+      pretty: true
+    }))
+    .pipe(gulp.dest('build'))
 
-
-
-
-
-
+});
 
 
 // COFFESCRIPT task
