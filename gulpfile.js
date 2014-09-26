@@ -4,7 +4,7 @@
 var gulp = require('gulp');
 
   // Utility plugins
-  watch = require('gulp-watch');,//watch stuff
+  watch = require('gulp-watch'),//watch stuff
   minify = require('gulp-min'), // minify stuff
   concat = require('gulp-concat'), // concat stuff
   shell = require('gulp-shell'), // shell comands
