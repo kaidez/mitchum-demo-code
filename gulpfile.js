@@ -182,7 +182,7 @@ gulp.task('images', function () {
 // watch task: be careful of watching too much because it may eat up
 // computer memory...at least, it does in Grunt
 gulp.task('watch', function() {
-
+ 
   // If preprocesser files change, run the site build, then refresh it
   // in the browser via live reload
   var server = livereload();
