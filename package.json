@@ -45,7 +45,7 @@
     "imagemin-pngcrush": "^1.0.0",
     "install": "^0.1.7",
     "less": "~1.7.5",
-    "npm": "^2.0.2",
+    "npm": "^2.1.2",
     "npm-check-updates": "^1.2.0",
     "tiny-lr": "^0.1.4"
   },
